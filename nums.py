@@ -1,9 +1,19 @@
 from typing import List
 
-candidate_str = input().strip()
-candidate = list(map(int, candidate_str[1:-1].split(',')))
+candidate = list(map(int,input().split()))
 target = int(input().strip())
 
+text = input().strip()  # 读取一行文本并去除首尾空格
+print(type(text))  
+
+num = int(input().strip())  # 转换为整数
+print(type(num))            # 输出：<class 'int'>
+
+data_str = input().strip()  # 如："10 20 30"
+num_list = list(map(int, data_str.split())) 
+
+csv_data = input().strip()  # 如："apple,banana,orange"
+str_list = csv_data.split(',')
 
 class Solution:
     def combinationSum2(self, candidates, target):
@@ -30,4 +40,4 @@ class Solution:
         dfs(0, target)
         return res
 
-print(Solution().combinationSum2(candidate,target))
+print(candidate)
