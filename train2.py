@@ -7,9 +7,8 @@
 
 
 
-str1 = "ddsa"
-str2 = "laddsa"
-
+str1 = "ddsawsda"
+str2 = "laddsaa"
 
 
 
@@ -17,23 +16,23 @@ str2 = "laddsa"
 def fun_commen(str1, str2):
     m = len(str1)
     n = len(str2)
-    begin = 0
+    end_idx = 0
+    
     maxlen = 0
-    dp = [[False] * (n + 1) for _ in range(m+1)]
+    dp = [[0] * (n + 1) for _ in range(m+1)]
     for i in range(1,m+1):
         for j in range(1,n+1):
             if str1[i-1] == str2[j-1]:
-                dp[i][j] = True
-                temp_i, temp_j = i, j
-                while dp[i][j] == True:
-                    i -= 1
-                    j -= 1
-                if temp_i - i + 1 > maxlen:
-                    maxlen = temp_i - i + 1
-                    begin = i
-                i, j = temp_i, temp_j
+                dp[i][j] = dp[i-1][j-1] + 1
+            else:
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+                
+                if dp[i][j] > maxlen:
+                    maxlen = dp[i][j]
+                    end_idx = i
+                
 
-    return str1[begin:begin+maxlen]
+    return str1[end_idx - maxlen:end_idx]
             
 print(fun_commen(str1, str2))
 print("\n")
