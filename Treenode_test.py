@@ -64,6 +64,33 @@ for c in input_str.split(','):
 
 
 
-root = list_to_Tree(elements)
+# root = list_to_Tree(elements)
 
-print(Solution().isValidBST(root))
+# print(Solution().isValidBST(root))
+
+
+
+class Treenode():
+    def __init__(self,val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+def nums_to_tree(nums):
+    
+
+    def dfs(root,i):
+        if len(nums) < 2*i + 2:
+            return False
+        root = Treenode(root)
+        root.left = dfs(nums[2*i+1],2*i+1)
+        root.right = dfs(nums[2*i+2],2*i+2)
+        return root
+
+    return dfs(nums[0],0)
+
+nums = [1,2,3,4,5,6,7]
+tree = nums_to_tree(nums)
+print(tree.left.val)
+
+    
